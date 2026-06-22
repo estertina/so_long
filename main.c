@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 18:42:24 by esttina           #+#    #+#             */
-/*   Updated: 2026/05/28 18:42:31 by esttina          ###   ########.fr       */
+/*   Updated: 2026/06/21 23:18:34 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main (int ac, char **av)
 {
-    int fd;
+    char **map;
 
     // two arguments: program name & map file
     if (ac != 2)
@@ -23,15 +23,36 @@ int main (int ac, char **av)
         return (1);
     }
 
-    fd = open(av[1], O_RDONLY);
-    if (fd < 0)
+    map = read_map_file(av[1]);
+    if (!map)
     {
         ft_putstr_fd("Error\nCannot open file.\n" ,1);
         return (1);
     }
 
-    ft_putstr_fd("Success! We opened the file.\n", 1);
+    if (check_rectangular(map) == 0)
+    {
+        ft_putstr_fd("Error\nThe map is not a valid rectangle.\n", 1);
+        free_map(map);
+        return (1);
+    }
 
-    close(fd);
+    if (check_walls(map) == 0)
+    {
+        ft_putstr_fd("Error\nThe map is not surrounded by walls.\n", 1);
+        free_map(map);
+        return (1);
+    }
+
+    if (check_elements(map) == 0)
+    {
+        ft_putstr_fd("Error\nInvalid map elements.\n", 1);
+        free_map(map);
+        return (1);
+    }
+    
+    ft_putstr_fd("Success! We opened and validated the file.\n", 1);
+
+    free_map(map);
     return (0);
 }
