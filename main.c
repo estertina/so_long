@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 18:42:24 by esttina           #+#    #+#             */
-/*   Updated: 2026/06/21 23:18:34 by esttina          ###   ########.fr       */
+/*   Updated: 2026/06/23 01:09:02 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,13 @@ int main (int ac, char **av)
     if (check_elements(map) == 0)
     {
         ft_putstr_fd("Error\nInvalid map elements.\n", 1);
+        free_map(map);
+        return (1);
+    }
+
+    if (check_path(map) == 0)
+    {
+        ft_putstr_fd("Error\nThere is no valid path to the exit or coins.\n", 1);
         free_map(map);
         return (1);
     }

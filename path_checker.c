@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/22 20:56:55 by esttina           #+#    #+#             */
-/*   Updated: 2026/06/22 21:50:40 by esttina          ###   ########.fr       */
+/*   Updated: 2026/06/23 01:06:02 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,19 @@ static char **duplicate_map(char **map, int rows)
 
     copy[i] = NULL;
     return (copy);
+}
+
+static void fill(char **map, int x, int y)
+{
+    if (map[y][x] == '1'|| map[y][x] == 'F')
+        return ;
+    
+    map[y][x] = 'F';
+    
+    fill(map, x + 1, y);
+    fill(map, x - 1, y);
+    fill(map, x, y + 1);
+    fill(map, x, y - 1);
 }
 
 int check_path(char **map)
@@ -64,7 +77,25 @@ int check_path(char **map)
         }
         y++;
     }
+    
+    fill(duplicate, p_x, p_y);
+    
+    y = 0;
+    while(duplicate[y] != NULL)
+    {
+        x = 0;
+        while (duplicate[y][x] != '\0')
+        {
+            if (duplicate[y][x] == 'C' || duplicate[y][x] == 'E')
+            {
+                free_map(duplicate);
+                return (0);
+            }
+            x++;
+        }
+        y++;
+    }
 
     free_map(duplicate);
     return (1);
-}   
+}

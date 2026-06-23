@@ -6,7 +6,7 @@
 #    By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/22 03:54:42 by esttina           #+#    #+#              #
-#    Updated: 2026/05/27 07:57:42 by esttina          ###   ########.fr        #
+#    Updated: 2026/06/23 01:13:30 by esttina          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@ CFLAGS = -Wall -Wextra -Werror
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SRCS = main.c // and other so_long files
-OBJS = $(SRCS: .c=.o)
+SRCS = main.c validate_map.c parse_map.c path_checker.c
+OBJS = $(SRCS:.c=.o)
 
 all: $(LIBFT) $(NAME)
 
@@ -33,7 +33,7 @@ clean:
 	rm -f $(OBJS)
 
 fclean: clean
-		make fclean -C $(LIBFT_DIR)
-		rm -f $(NAME)
+	make fclean -C $(LIBFT_DIR)
+	rm -f $(NAME)
 
 re: fclean all
