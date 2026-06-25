@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 03:54:45 by esttina           #+#    #+#             */
-/*   Updated: 2026/06/23 01:10:08 by esttina          ###   ########.fr       */
+/*   Updated: 2026/06/25 03:16:48 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,23 @@
 
 #include "libft/libft.h"
 
-//open function
 #include <fcntl.h>
-
-//NULL
 #include <stddef.h>
+#include <mlx.h>
 
-//for testing
-#include <stdio.h>
+typedef struct s_game
+{
+    void *mlx;
+    void *win;
+    char **map;
+    int map_w;
+    int map_h;
+    void *img_wall;
+    void *img_floor;
+    void *img_player;
+    void *img_collectible;
+    void *img_exit;
+} t_game;
 
 char **read_map_file(char *file_path);
 int check_rectangular(char **map);
@@ -30,6 +39,7 @@ int check_walls(char **map);
 int check_elements(char **map);
 void free_map(char **map);
 int check_path(char **map);
+void    init_images(t_game *game);
 
 
 #endif
