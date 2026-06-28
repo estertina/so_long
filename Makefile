@@ -6,13 +6,13 @@
 #    By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/22 03:54:42 by esttina           #+#    #+#              #
-#    Updated: 2026/06/25 00:19:08 by esttina          ###   ########.fr        #
+#    Updated: 2026/06/28 06:47:20 by esttina          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I$(MLX_DIR)
+CFLAGS = -Wall -Wextra -Werror -I$(MLX_DIR) -Wno-deprecated-declarations
 
 # OS DETECTION & MLX SETUP #
 UNAME_S := $(shell uname -s)
@@ -28,7 +28,7 @@ endif
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SRCS = main.c validate_map.c parse_map.c path_checker.c
+SRCS = main.c validate_map.c parse_map.c path_checker.c images.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(LIBFT) mlx $(NAME)
@@ -44,7 +44,6 @@ $(NAME): $(OBJS)
 
 clean:
 	make clean -C $(LIBFT_DIR)
-	make clean -C $(MLX_DIR)
 	rm -f $(OBJS)
 
 fclean: clean

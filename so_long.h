@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 03:54:45 by esttina           #+#    #+#             */
-/*   Updated: 2026/06/25 03:16:48 by esttina          ###   ########.fr       */
+/*   Updated: 2026/06/28 06:02:10 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include <fcntl.h>
 #include <stddef.h>
 #include <mlx.h>
+
+#define TILE_SIZE 32
 
 typedef struct s_game
 {
@@ -40,6 +42,7 @@ int check_elements(char **map);
 void free_map(char **map);
 int check_path(char **map);
 void    init_images(t_game *game);
+int map_strlen(char *str);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 18:42:24 by esttina           #+#    #+#             */
-/*   Updated: 2026/06/23 01:09:02 by esttina          ###   ########.fr       */
+/*   Updated: 2026/06/28 06:34:47 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int main (int ac, char **av)
 {
     char **map;
+    t_game game;
+    int rows;
 
     // two arguments: program name & map file
     if (ac != 2)
@@ -60,6 +62,20 @@ int main (int ac, char **av)
     
     ft_putstr_fd("Success! We opened and validated the file.\n", 1);
 
-    free_map(map);
+    game.map = map;
+
+    game.mlx = mlx_init();
+
+    game.map_w = map_strlen(map[0]) * TILE_SIZE;
+    
+    rows = 0;
+    while(map[rows] != NULL)
+        rows++;
+    game.map_h = rows * TILE_SIZE;
+    
+    game.win = mlx_new_window(game.mlx, game.map_w, game.map_h, "so_long");
+
+    mlx_loop(game.mlx);
+    
     return (0);
 }

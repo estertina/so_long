@@ -6,13 +6,13 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 18:59:19 by esttina           #+#    #+#             */
-/*   Updated: 2026/06/09 03:32:25 by esttina          ###   ########.fr       */
+/*   Updated: 2026/06/28 05:44:34 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int map_strlen(char *str)
+int map_strlen(char *str)
 {
     int i;
 
