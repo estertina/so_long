@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 18:42:24 by esttina           #+#    #+#             */
-/*   Updated: 2026/07/02 18:55:56 by esttina          ###   ########.fr       */
+/*   Updated: 2026/07/04 01:01:27 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,17 @@ int main (int ac, char **av)
     init_images(&game);
 
     render_map(&game);
-
-    mlx_loop(game.mlx);
     
+    // red x button
+    mlx_hook(game.win, 17, 0, close_game, &game);
+    
+    // any key press on keyboard
+    mlx_hook(game.win, 2, (1L<<0), key_hook, &game);
+    
+    mlx_loop(game.mlx);
+
     return (0);
 }
+
+
+

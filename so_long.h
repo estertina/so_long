@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 03:54:45 by esttina           #+#    #+#             */
-/*   Updated: 2026/07/02 18:57:29 by esttina          ###   ########.fr       */
+/*   Updated: 2026/07/04 01:00:35 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,21 @@ typedef struct s_game
     void *img_exit;
 } t_game;
 
+#ifdef __linux__
+#   define KEY_ESC 65307
+#   define KEY_W 119
+#   define KEY_A 97
+#   define KEY_S 115
+#   define KEY_D 100
+
+#elif defined (__APPLE__)
+#   define KEY_ESC 53
+#   define KEY_W 13
+#   define KEY_A 0
+#   define KEY_S 1
+#   define KEY_D 2
+#endif
+
 char    **read_map_file(char *file_path);
 int     check_rectangular(char **map);
 int     check_walls(char **map);
@@ -45,6 +60,8 @@ int     check_path(char **map);
 void    init_images(t_game *game);
 int     map_strlen(char *str);
 int     render_map(t_game *game);
+int     close_game(t_game *game);
+int     key_hook(int keycode, t_game *game);
 
 
 #endif

@@ -6,7 +6,7 @@
 #    By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/22 03:54:42 by esttina           #+#    #+#              #
-#    Updated: 2026/06/28 08:44:45 by esttina          ###   ########.fr        #
+#    Updated: 2026/07/04 01:02:54 by esttina          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,14 @@ endif
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SRCS = main.c validate_map.c parse_map.c path_checker.c images.c render.c
+SRCS = main.c \
+validate_map.c \
+parse_map.c \
+path_checker.c \
+images.c \
+render.c \
+hooks.c
+
 OBJS = $(SRCS:.c=.o)
 
 all: $(LIBFT) mlx $(NAME)
