@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 18:42:24 by esttina           #+#    #+#             */
-/*   Updated: 2026/06/28 06:34:47 by esttina          ###   ########.fr       */
+/*   Updated: 2026/07/02 18:55:56 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int main (int ac, char **av)
         free_map(map);
         return (1);
     }
-    
+
     ft_putstr_fd("Success! We opened and validated the file.\n", 1);
 
     game.map = map;
@@ -74,6 +74,10 @@ int main (int ac, char **av)
     game.map_h = rows * TILE_SIZE;
     
     game.win = mlx_new_window(game.mlx, game.map_w, game.map_h, "so_long");
+
+    init_images(&game);
+
+    render_map(&game);
 
     mlx_loop(game.mlx);
     
