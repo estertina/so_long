@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/04 00:03:29 by esttina           #+#    #+#             */
-/*   Updated: 2026/07/04 01:23:02 by esttina          ###   ########.fr       */
+/*   Updated: 2026/07/04 04:06:44 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,32 @@ int close_game(t_game *game)
     return (0);
 }
 
+void move_player(t_game *game, int new_y, int new_x)
+{
+    if (game->map[new_y][new_x] == '1')
+        return ;
+    
+    game->map[game->player_y][game->player_x] = '0';
+
+    game->map[new_y][new_x] = 'P';
+
+    game->player_y = new_y;
+    game->player_x = new_x;
+
+    render_map(game);
+}
+
 int key_hook(int keycode, t_game *game)
 {
     if (keycode == KEY_ESC)
         close_game(game);
     else if (keycode == KEY_W)
-        ft_putstr_fd("Player moved UP!\n", 1);
+        move_player(game, game->player_y - 1, game->player_x);
     else if (keycode == KEY_A)
-        ft_putstr_fd("Player moved LEFT!\n", 1);
+        move_player(game, game->player_y, game->player_x - 1);
     else if (keycode == KEY_S)
-        ft_putstr_fd("Player moved DOWN!\n", 1);
+        move_player(game, game->player_y + 1, game->player_x);
     else if (keycode == KEY_D)
-        ft_putstr_fd("Player moved RIGHT!\n", 1);
+        move_player(game, game->player_y, game->player_x + 1);
     return (0);
 }

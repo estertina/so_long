@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 18:42:24 by esttina           #+#    #+#             */
-/*   Updated: 2026/07/04 01:01:27 by esttina          ###   ########.fr       */
+/*   Updated: 2026/07/04 03:52:32 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int main (int ac, char **av)
     t_game game;
     int rows;
 
+    ft_bzero(&game, sizeof(t_game));
     // two arguments: program name & map file
     if (ac != 2)
     {
@@ -63,6 +64,8 @@ int main (int ac, char **av)
     ft_putstr_fd("Success! We opened and validated the file.\n", 1);
 
     game.map = map;
+    
+    player_position(&game);
 
     game.mlx = mlx_init();
 

@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 03:54:45 by esttina           #+#    #+#             */
-/*   Updated: 2026/07/04 01:00:35 by esttina          ###   ########.fr       */
+/*   Updated: 2026/07/04 05:09:27 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct s_game
     void *img_player;
     void *img_collectible;
     void *img_exit;
+    int player_x;
+    int player_y;
 } t_game;
 
 #ifdef __linux__
@@ -62,6 +64,8 @@ int     map_strlen(char *str);
 int     render_map(t_game *game);
 int     close_game(t_game *game);
 int     key_hook(int keycode, t_game *game);
+void    player_position(t_game *game);
+void    move_player(t_game *game, int new_y, int new_x);
 
 
 #endif

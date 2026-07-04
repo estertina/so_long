@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 15:54:25 by esttina           #+#    #+#             */
-/*   Updated: 2026/06/21 16:52:25 by esttina          ###   ########.fr       */
+/*   Updated: 2026/07/04 03:32:04 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,27 @@ void free_map(char **map)
         i++;
     }
     free(map);
+}
+
+void player_position(t_game *game)
+{
+    int y;
+    int x;
+
+    y = 0;
+    while (game->map[y] != NULL)
+    {
+        x = 0;
+        while (game->map[y][x] != '\0')
+        {
+            if (game->map[y][x] == 'P')
+            {
+                game->player_y = y;
+                game->player_x = x;
+                return ;
+            }
+            x++;
+        }
+        y++;
+    }
 }
