@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 03:54:45 by esttina           #+#    #+#             */
-/*   Updated: 2026/07/04 05:09:27 by esttina          ###   ########.fr       */
+/*   Updated: 2026/07/04 05:23:57 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ typedef struct s_game
     void *img_exit;
     int player_x;
     int player_y;
+    int moves;
+    int collectibles_total;
+    int collectibles_gathered;
 } t_game;
 
 #ifdef __linux__

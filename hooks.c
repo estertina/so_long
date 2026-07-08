@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/04 00:03:29 by esttina           #+#    #+#             */
-/*   Updated: 2026/07/04 04:06:44 by esttina          ###   ########.fr       */
+/*   Updated: 2026/07/04 05:50:56 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,28 @@ void move_player(t_game *game, int new_y, int new_x)
 {
     if (game->map[new_y][new_x] == '1')
         return ;
+
+    if (game->map[new_y][new_x] == 'E')
+    {
+        if (game->collectibles_gathered == game->collectibles_total)
+        {
+            ft_putstr_fd("YOU_WIN!\n", 1);
+            close_game(game);
+        }
+        else
+        {
+            ft_putstr_fd("You need more wood!\n", 1);
+            return ;
+        }
+    }
+
+    if (game->map[new_y][new_x] == 'C')
+    {
+        game->collectibles_gathered++;
+        ft_putstr_fd("Wood: ", 1);
+        ft_putnbr_fd(game->collectibles_gathered, 1);
+        ft_putstr_fd("\n", 1);
+    }
     
     game->map[game->player_y][game->player_x] = '0';
 
@@ -32,6 +54,11 @@ void move_player(t_game *game, int new_y, int new_x)
 
     game->player_y = new_y;
     game->player_x = new_x;
+
+    game->moves++;
+    ft_putstr_fd("Moves: ", 1);
+    ft_putnbr_fd(game->moves, 1);
+    ft_putstr_fd("\n", 1);
 
     render_map(game);
 }
