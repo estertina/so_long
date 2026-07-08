@@ -6,7 +6,7 @@
 #    By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/22 03:54:42 by esttina           #+#    #+#              #
-#    Updated: 2026/07/04 01:02:54 by esttina          ###   ########.fr        #
+#    Updated: 2026/07/08 15:39:35 by esttina          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ UNAME_S := $(shell uname -s)
 
 ifeq ($(UNAME_S),Linux)
 	MLX_DIR = mlx_linux
-	MLX_FLAGS = -L$(MLX_DIR) -lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+	MLX_FLAGS = -L$(MLX_DIR) -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 else
 	MLX_DIR = mlx_mac
 	MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
