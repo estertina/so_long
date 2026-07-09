@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 15:54:25 by esttina           #+#    #+#             */
-/*   Updated: 2026/07/04 05:28:03 by esttina          ###   ########.fr       */
+/*   Updated: 2026/07/09 10:06:44 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,43 +33,40 @@ static int count_rows(char *file_path)
     return (count);
 }
 
-char **read_map_file(char *file_path)
+static char **fill_map_array(int fd, int rows, char **map)
 {
-    int fd;
-    int rows;
     int i;
-    char **map;
 
-    //How tall is the map
-    rows = count_rows(file_path);
-    if (rows <= 0)
-        return (NULL);
-    
-    //Allocate memory for pointers (rows + 1 for NULL termination)
-    map = malloc(sizeof(char *) * (rows + 1));
-    if (!map)
-        return (NULL);
-    
-    //
-    fd = open(file_path, O_RDONLY);
-
-    if (fd < 0)
-    {
-        free(map);
-        return (NULL);
-    }
-    
     i = 0;
     while (i < rows)
     {
         map[i] = get_next_line(fd);
         i++;
     }
-
     map[i] = NULL;
-
     close(fd);
     return (map);
+}
+
+char **read_map_file(char *file_path)
+{
+    int fd;
+    int rows;
+    char **map;
+
+    rows = count_rows(file_path);
+    if (rows <= 0)
+        return (NULL);
+    map = malloc(sizeof(char *) * (rows + 1));
+    if (!map)
+        return (NULL);
+    fd = open(file_path, O_RDONLY);
+    if (fd < 0)
+    {
+        free(map);
+        return (NULL);
+    }
+    return (fill_map_array(fd, rows, map));
 }
 
 void free_map(char **map)
@@ -78,7 +75,6 @@ void free_map(char **map)
 
     if (!map)
         return ;
-
     i = 0;
     while (map[i] != NULL)
     {

@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/22 20:56:55 by esttina           #+#    #+#             */
-/*   Updated: 2026/06/23 01:06:02 by esttina          ###   ########.fr       */
+/*   Updated: 2026/07/09 10:15:43 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,26 @@ static char **duplicate_map(char **map, int rows)
     return (copy);
 }
 
+static int scan_unreachable(char **map)
+{
+    int x;
+    int y;
+
+    y = 0;
+    while(map[y] != NULL)
+    {
+        x = 0;
+        while (map[y][x] != '\0')
+        {
+            if (map[y][x] == 'C' || map[y][x] == 'E')
+                return (1);
+            x++;
+        }
+        y++;
+    }
+    return (0);
+}
+
 static void fill(char **map, int x, int y)
 {
     if (map[y][x] == '1'|| map[y][x] == 'F')
@@ -45,57 +65,47 @@ static void fill(char **map, int x, int y)
     fill(map, x, y - 1);
 }
 
+static void find_start(char **map, int *p_x, int *p_y)
+{
+    int x;
+    int y;
+
+    y = 0;
+    while (map[y] != NULL)
+    {
+        x = 0;
+        while(map[y][x] != '\0')
+        {
+            if (map[y][x] == 'P')
+            {
+                *p_x = x;
+                *p_y = y;
+            }
+            x++;
+        }
+        y++;
+    }
+}
 int check_path(char **map)
 {
     char    **duplicate;
-    int     x;
     int     y;
     int     p_x;
     int     p_y;
 
     y = 0;
-    // counting rows
     while (map[y])
         y++;
-
     duplicate = duplicate_map(map, y);
     if (!duplicate)
         return (0);
-    
-    y = 0;
-    while(duplicate[y] != NULL)
-    {
-        x = 0;
-        while(duplicate[y][x] != '\0')
-        {
-            if (duplicate[y][x] == 'P')
-            {
-                p_x = x;
-                p_y = y;
-            }
-            x++;
-        }
-        y++;
-    }
-    
+    find_start(duplicate, &p_x, &p_y);
     fill(duplicate, p_x, p_y);
-    
-    y = 0;
-    while(duplicate[y] != NULL)
+    if (scan_unreachable(duplicate) == 1)
     {
-        x = 0;
-        while (duplicate[y][x] != '\0')
-        {
-            if (duplicate[y][x] == 'C' || duplicate[y][x] == 'E')
-            {
-                free_map(duplicate);
-                return (0);
-            }
-            x++;
-        }
-        y++;
+        free_map(duplicate);
+        return (0);
     }
-
     free_map(duplicate);
     return (1);
 }

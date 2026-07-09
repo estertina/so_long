@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/04 00:03:29 by esttina           #+#    #+#             */
-/*   Updated: 2026/07/04 05:50:56 by esttina          ###   ########.fr       */
+/*   Updated: 2026/07/09 09:18:16 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,8 @@ int close_game(t_game *game)
     return (0);
 }
 
-void move_player(t_game *game, int new_y, int new_x)
+static int check_next_tile(t_game *game, int new_y, int new_x)
 {
-    if (game->map[new_y][new_x] == '1')
-        return ;
-
     if (game->map[new_y][new_x] == 'E')
     {
         if (game->collectibles_gathered == game->collectibles_total)
@@ -36,10 +33,9 @@ void move_player(t_game *game, int new_y, int new_x)
         else
         {
             ft_putstr_fd("You need more wood!\n", 1);
-            return ;
+            return (0);
         }
     }
-
     if (game->map[new_y][new_x] == 'C')
     {
         game->collectibles_gathered++;
@@ -47,15 +43,22 @@ void move_player(t_game *game, int new_y, int new_x)
         ft_putnbr_fd(game->collectibles_gathered, 1);
         ft_putstr_fd("\n", 1);
     }
+    return (1);
+}
+
+void move_player(t_game *game, int new_y, int new_x)
+{
+    if (game->map[new_y][new_x] == '1')
+        return ;
+    if (check_next_tile(game, new_y, new_x) == 0)
+        return ;
     
     game->map[game->player_y][game->player_x] = '0';
-
     game->map[new_y][new_x] = 'P';
-
     game->player_y = new_y;
     game->player_x = new_x;
-
     game->moves++;
+    
     ft_putstr_fd("Moves: ", 1);
     ft_putnbr_fd(game->moves, 1);
     ft_putstr_fd("\n", 1);

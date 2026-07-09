@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 18:59:19 by esttina           #+#    #+#             */
-/*   Updated: 2026/06/28 05:44:34 by esttina          ###   ########.fr       */
+/*   Updated: 2026/07/09 09:58:43 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,87 +28,95 @@ int map_strlen(char *str)
 int check_rectangular(char **map)
 {
     int width;
-    int i;
+    int y;
     
     if (!map || !map[0])
         return (0);
     
     width = map_strlen(map[0]);
-    i = 1;
+    y = 1;
 
-    while(map[i] != NULL)
+    while(map[y] != NULL)
     {
-        if (map_strlen(map[i]) != width)
+        if (map_strlen(map[y]) != width)
             return (0); //Failure
-        i++;
+        y++;
     }
     return (1);
 }
 
 int check_walls(char **map)
 {
-    int i;
-    int j;
+    int y;
+    int x;
     int width;
     int height;
 
-    j = 0;
-    i = 0;
+    y = 0;
+    x = 0;
     height = 0;
     width = map_strlen(map[0]);
 
     while (map[height] != NULL)
         height++;
-    
-    while(j < width)
+    while(x < width)
     {
-        if (map[0][j] != '1' || map[height - 1][j] != '1')
+        if (map[0][x] != '1' || map[height - 1][x] != '1')
             return (0);
-        j++;
+        x++;
     }
-
-    while (i < height)
+    while (y < height)
     {
-        if (map[i][0] != '1' || map[i][width - 1] != '1')
+        if (map[y][0] != '1' || map[y][width - 1] != '1')
             return (0);
-        i++;
+        y++;
     }
-    
     return (1);
 }
 
+static int count_char(char **map, char target)
+{
+    int y;
+    int x;
+    int count;
+
+    count = 0;
+    y = 0;
+    while(map[y])
+    {
+        x = 0;
+        while (map[y][x] && map[y][x] != '\n')
+        {
+            if (map[y][x] == target)
+                count++;
+            x++;
+        }
+        y++;
+    }
+    return (count);
+}
 int check_elements(char **map)
 {
-    int i;
-    int j;
-    int p;
-    int e;
-    int c;
+    int y;
+    int x;
 
-    p = 0;
-    e = 0;
-    c = 0;
-    i = 0;
-    
-    while (map[i] != NULL)
+    y = 0;
+    while (map[y] != NULL)
     {
-        j = 0;
-        while (map[i][j] != '\0' && map[i][j] != '\n')
+        x = 0;
+        while (map[y][x] != '\0' && map[y][x] != '\n')
         {
-            if (map[i][j] == 'P')
-                p++;
-            else if (map[i][j] == 'E')
-                e++;
-            else if (map[i][j] == 'C')
-                c++;
-            else if (map[i][j] != '0' && map[i][j] != '1')
+            if (map[y][x] != 'P' && map[y][x] != 'E' && map[y][x] != 'C' && map[y][x] != '0' && map[y][x] != '1')
                 return (0);
-            j++;
+            x++;
         }
-        i++;
+        y++;
     }
-    if (p == 1 && e == 1 && c >= 1)
-        return (1);
-    else
+    
+    if (count_char(map, 'P') != 1 || count_char(map, 'E') != 1)
         return (0);
+    if (count_char(map, 'C') < 1)
+        return (0);
+    else
+        return (1);
 }
