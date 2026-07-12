@@ -6,15 +6,21 @@
 #    By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/22 03:54:42 by esttina           #+#    #+#              #
-#    Updated: 2026/07/08 15:39:35 by esttina          ###   ########.fr        #
+#    Updated: 2026/07/12 05:50:42 by esttina          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I$(MLX_DIR) -Wno-deprecated-declarations
+CFLAGS = -Wall -Wextra -Werror -Iinclude -I. -I$(MLX_DIR) -Wno-deprecated-declarations
 
-# OS DETECTION & MLX SETUP #
+# --- DIRECTORIES ---
+SRC_DIR = src
+OBJ_DIR = obj
+LIBFT_DIR = ./libft
+LIBFT = $(LIBFT_DIR)/libft.a
+
+# --- OS DETECTION & MLX SETUP ---
 UNAME_S := $(shell uname -s)
 
 ifeq ($(UNAME_S),Linux)
@@ -25,18 +31,19 @@ else
 	MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 endif
 
-LIBFT_DIR = ./libft
-LIBFT = $(LIBFT_DIR)/libft.a
+# --- SOURCES ---
 
-SRCS = main.c \
-validate_map.c \
-parse_map.c \
-path_checker.c \
-images.c \
-render.c \
-hooks.c
+SRCS =		$(SRC_DIR)/main.c \
+			$(SRC_DIR)/validate_map.c \
+			$(SRC_DIR)/parse_map.c \
+			$(SRC_DIR)/path_checker.c \
+			$(SRC_DIR)/images.c \
+			$(SRC_DIR)/render.c \
+			$(SRC_DIR)/hooks.c
 
-OBJS = $(SRCS:.c=.o)
+OBJS =		$(SRCS:.c=.o)
+
+# --- RULES ---
 
 all: $(LIBFT) mlx $(NAME)
 
