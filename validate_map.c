@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 18:59:19 by esttina           #+#    #+#             */
-/*   Updated: 2026/07/10 18:34:02 by esttina          ###   ########.fr       */
+/*   Updated: 2026/07/12 03:01:07 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	check_walls(char **map)
 	int	width;
 	int	height;
 
-	y = 0;
+	y = 1;
 	x = 0;
 	height = 0;
 	width = map_strlen(map[0]);

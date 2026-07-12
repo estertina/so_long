@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/04 00:03:29 by esttina           #+#    #+#             */
-/*   Updated: 2026/07/09 22:30:14 by esttina          ###   ########.fr       */
+/*   Updated: 2026/07/12 00:01:04 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,25 @@
 int	close_game(t_game *game)
 {
 	ft_putstr_fd("Closing the game. Goodbye!\n", 1);
-	mlx_destroy_window(game->mlx, game->win);
+	if (game->map != NULL)
+		free_map(game->map);
+	if (game->img_wall)
+		mlx_destroy_image(game->mlx, game->img_wall);
+	if (game->img_floor)
+		mlx_destroy_image(game->mlx, game->img_floor);
+	if (game->img_player)
+		mlx_destroy_image(game->mlx, game->img_player);
+	if (game->img_collectible)
+		mlx_destroy_image(game->mlx, game->img_collectible);
+	if (game->img_exit)
+		mlx_destroy_image(game->mlx, game->img_exit);
+	if (game->win)
+		mlx_destroy_window(game->mlx, game->win);
+	if (game->mlx)
+	{
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+	}
 	exit(0);
 	return (0);
 }

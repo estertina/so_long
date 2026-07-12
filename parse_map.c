@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 15:54:25 by esttina           #+#    #+#             */
-/*   Updated: 2026/07/10 00:20:09 by esttina          ###   ########.fr       */
+/*   Updated: 2026/07/12 02:44:39 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static char	**fill_map_array(int fd, int rows, char **map)
 		i++;
 	}
 	map[i] = NULL;
-	close(fd);
 	return (map);
 }
 
@@ -66,7 +65,9 @@ char	**read_map_file(char *file_path)
 		free(map);
 		return (NULL);
 	}
-	return (fill_map_array(fd, rows, map));
+	map = fill_map_array(fd, rows, map);
+	close(fd);
+	return (map);
 }
 
 void	free_map(char **map)
