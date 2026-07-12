@@ -5,7 +5,7 @@
 ## Description
 So_long is a 2D game project where the goal is to collect all the collectibles on a map and reach the exit by choosing the shortest possible route. The game is built using the school's graphical library, MinilibX. It focuses on window management, event handling, and texture manipulation. 
 
-[So Long Gameplay Preview](https://github.com/user-attachments/assets/acfe45ba-c823-42c0-8d76-2523f62dbcea)
+<img width="1026" height="418" alt="So Long" src="https://github.com/user-attachments/assets/acfe45ba-c823-42c0-8d76-2523f62dbcea" />
 
 ## Key Features
 * **Dynamic Rendering:** Built using the MiniLibx graphical library for window and image management.
