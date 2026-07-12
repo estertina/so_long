@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 03:54:45 by esttina           #+#    #+#             */
-/*   Updated: 2026/07/12 05:49:41 by esttina          ###   ########.fr       */
+/*   Updated: 2026/07/13 00:47:23 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ int		close_game(t_game *game);
 int		key_hook(int keycode, t_game *game);
 void	player_position(t_game *game);
 void	move_player(t_game *game, int new_y, int new_x);
+void	free_resources(t_game *game);
 
 #endif

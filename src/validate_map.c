@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 18:59:19 by esttina           #+#    #+#             */
-/*   Updated: 2026/07/12 05:55:09 by esttina          ###   ########.fr       */
+/*   Updated: 2026/07/12 23:23:41 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ int	map_strlen(char *str)
 int	check_rectangular(char **map)
 {
 	int	width;
-	int	y;
+	int	height;
 
 	if (!map || !map[0])
 		return (0);
 	width = map_strlen(map[0]);
-	y = 1;
-	while (map[y] != NULL)
+	height = 1;
+	while (map[height] != NULL)
 	{
-		if (map_strlen(map[y]) != width)
+		if (map_strlen(map[height]) != width)
 			return (0);
-		y++;
+		height++;
 	}
 	return (1);
 }

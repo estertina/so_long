@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 03:16:19 by esttina           #+#    #+#             */
-/*   Updated: 2026/07/12 05:54:09 by esttina          ###   ########.fr       */
+/*   Updated: 2026/07/13 00:48:13 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,11 @@ void	init_images(t_game *game)
 			"textures/collectible.xpm", &w, &h);
 	game->img_exit = mlx_xpm_file_to_image(game->mlx,
 			"textures/exit.xpm", &w, &h);
-	if (!game->img_wall || !game->img_floor || !game->img_player)
+	if (!game->img_wall || !game->img_floor || !game->img_player
+		|| !game->img_collectible || !game->img_exit)
 	{
-		ft_putstr_fd("Error: Could not load XPM file\n", 2);
-		exit(1);
-	}
-	if (!game->img_collectible || !game->img_exit)
-	{
-		ft_putstr_fd("Error: Could not load XPM file\n", 2);
+		ft_putstr_fd("Error\nCould not load XPM file\n", 2);
+		free_resources(game);
 		exit(1);
 	}
 }

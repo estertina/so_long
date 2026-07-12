@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 18:42:24 by esttina           #+#    #+#             */
-/*   Updated: 2026/07/12 05:55:41 by esttina          ###   ########.fr       */
+/*   Updated: 2026/07/13 00:14:30 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	main(int ac, char **av)
 		free_map(map);
 		return (1);
 	}
-	ft_putstr_fd("Success! We opened and validated the file.\n", 2);
+	ft_putstr_fd("Success! We opened and validated the file.\n", 1);
 	init_and_run_game(&game, map);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/22 20:56:55 by esttina           #+#    #+#             */
-/*   Updated: 2026/07/12 05:54:54 by esttina          ###   ########.fr       */
+/*   Updated: 2026/07/12 23:55:43 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 static char	**duplicate_map(char **map, int rows)
 {
 	char	**copy;
-	int		i;
+	int		y;
 
 	copy = malloc(sizeof(char *) * (rows + 1));
 	if (!copy)
 		return (NULL);
-	i = 0;
-	while (i < rows)
+	y = 0;
+	while (y < rows)
 	{
-		copy[i] = ft_strdup(map[i]);
-		i++;
+		copy[y] = ft_strdup(map[y]);
+		y++;
 	}
-	copy[i] = NULL;
+	copy[y] = NULL;
 	return (copy);
 }
 

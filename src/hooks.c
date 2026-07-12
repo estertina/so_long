@@ -6,15 +6,14 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/04 00:03:29 by esttina           #+#    #+#             */
-/*   Updated: 2026/07/12 05:54:35 by esttina          ###   ########.fr       */
+/*   Updated: 2026/07/13 00:43:03 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-int	close_game(t_game *game)
+void	free_resources(t_game *game)
 {
-	ft_putstr_fd("Closing the game. Goodbye!\n", 1);
 	if (game->map != NULL)
 		free_map(game->map);
 	if (game->img_wall)
@@ -34,6 +33,12 @@ int	close_game(t_game *game)
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
+}
+
+int	close_game(t_game *game)
+{
+	ft_putstr_fd("Closing the game. Goodbye!\n", 1);
+	free_resources(game);
 	exit(0);
 	return (0);
 }
