@@ -6,7 +6,7 @@
 #    By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/22 03:54:42 by esttina           #+#    #+#              #
-#    Updated: 2026/07/12 05:50:42 by esttina          ###   ########.fr        #
+#    Updated: 2026/07/13 02:28:49 by esttina          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,6 @@ CFLAGS = -Wall -Wextra -Werror -Iinclude -I. -I$(MLX_DIR) -Wno-deprecated-declar
 
 # --- DIRECTORIES ---
 SRC_DIR = src
-OBJ_DIR = obj
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
